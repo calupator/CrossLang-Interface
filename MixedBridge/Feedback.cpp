@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Managed.h"
+#include "ManagedWrapper1.h"
 #include "Feedback.h"
 #include <string>
 

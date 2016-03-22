@@ -1,33 +1,36 @@
+
 #include "InterfaceNativeCpp.h"
 // без этой переменной не создается lib-файл
 _API int nMy1212=0;
 
 namespace InterfaceNativeCpp
 {
-	void TestInterfaceNativeCpp::MethodNativeCpp1(int X)
+	TestInterfaceNativeCpp::TestInterfaceNativeCpp(void) : m_val(0.0f)
 	{
-		std::cout << "Метод MethodNativeCpp1 получил параметр: " << X << std::endl;
-		std::stringstream ss;
-		ss<<X;
-		(*EventNativeCpp1)(/*this,*/ "\tАргумент метода MethodNativeCpp1: " + ss.str());
 	}
 
-	int TestInterfaceNativeCpp::getPropNativeCpp1()
-	{
-		return pval;
-	}
-	
-	void TestInterfaceNativeCpp::setPropNativeCpp1(int value)
-	{
-		pval = value;
-	}
-	
-	TestInterfaceNativeCpp::TestInterfaceNativeCpp()
+	TestInterfaceNativeCpp::~TestInterfaceNativeCpp(void)
 	{
 	}
-	
-	TestInterfaceNativeCpp::~TestInterfaceNativeCpp()
+
+	float TestInterfaceNativeCpp::getPropNativeCpp1(void)
 	{
+		return m_val;
+	}
+
+	void TestInterfaceNativeCpp::setPropNativeCpp1(float newVal)
+	{
+		m_val = newVal;
+	}
+
+	int TestInterfaceNativeCpp::MethodNativeCpp1(std::string pszString)
+	{
+		std::cout << "Метод MethodNativeCpp1 получил параметр: " << pszString << std::endl;
+		std::stringstream ss;
+		ss << pszString;
+		(*EventNativeCpp1)(/*this,*/ "\tАргумент метода MethodNativeCpp1: " + ss.str());
+		//return static_cast<int>(wcslen(pszString.c_str()));
+		return static_cast<int>(pszString.length());
 	}
 
 	/*TestInterfaceNativeCpp::TestInterfaceNativeCpp(CFeedback* pFeedback)

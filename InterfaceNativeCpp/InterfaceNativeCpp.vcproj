@@ -356,11 +356,23 @@
 			</FileConfiguration>
 		</File>
 		<File
+			RelativePath=".\IInterface.h"
+			>
+		</File>
+		<File
 			RelativePath=".\InterfaceNativeCpp.cpp"
 			>
 		</File>
 		<File
 			RelativePath=".\InterfaceNativeCpp.h"
+			>
+		</File>
+		<File
+			RelativePath=".\InterfaceNativeCpp2.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\InterfaceNativeCpp2.h"
 			>
 		</File>
 	</Files>

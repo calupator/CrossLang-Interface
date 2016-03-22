@@ -135,7 +135,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Unmanaged.lib $(NOINHERIT)"
+				AdditionalDependencies="Unmanaged.lib InterfaceNativeCpp.lib InterfaceNativeC.lib $(NOINHERIT)"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(OutDir)"
 				GenerateDebugInformation="true"
@@ -338,7 +338,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Managed.cpp"
+				RelativePath=".\ManagedWrapper1.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagedWrapper2.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NativeWrapper.cpp"
 				>
 			</File>
 			<File
@@ -356,7 +364,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Managed.h"
+				RelativePath=".\ManagedWrapper1.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ManagedWrapper2.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NativeWrapper.h"
 				>
 			</File>
 			<File

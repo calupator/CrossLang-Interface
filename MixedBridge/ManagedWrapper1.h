@@ -16,10 +16,10 @@ namespace Wrapper
 	public ref class Managed
 	{
 	public:
-		Managed();
-		~Managed();
+		Managed(void);
+		virtual ~Managed(void);
 
-		void MethodMixedCpp1(int nValue);
+		int MethodMixedCpp1(String ^ nValue);
 		
 		property int PropMixedCpp1
 		{
@@ -53,6 +53,9 @@ namespace Wrapper
 					m_pValueChanged->Invoke(str);
 			}
 		}
+
+	protected:
+		!Managed(void);
 
 	private:
 		CUnmanaged* m_pUnmanaged;
