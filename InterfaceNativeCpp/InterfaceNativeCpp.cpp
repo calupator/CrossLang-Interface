@@ -23,14 +23,12 @@ namespace InterfaceNativeCpp
 		m_val = newVal;
 	}
 
-	int TestInterfaceNativeCpp::MethodNativeCpp1(std::string pszString)
+	void TestInterfaceNativeCpp::MethodNativeCpp1(int pszString)
 	{
 		std::cout << "Метод MethodNativeCpp1 получил параметр: " << pszString << std::endl;
 		std::stringstream ss;
 		ss << pszString;
 		(*EventNativeCpp1)(/*this,*/ "\tАргумент метода MethodNativeCpp1: " + ss.str());
-		//return static_cast<int>(wcslen(pszString.c_str()));
-		return static_cast<int>(pszString.length());
 	}
 
 	/*TestInterfaceNativeCpp::TestInterfaceNativeCpp(CFeedback* pFeedback)

@@ -32,11 +32,10 @@ namespace Wrapper
 			m_pFeedback = NULL;
 		}
 	}
-	int Managed::MethodMixedCpp1(String ^ nValue)
+	void Managed::MethodMixedCpp1(int nValue)
 	{
 		Console::WriteLine("Метод MethodMixedCpp1 вызывает нативный метод MethodNativeCpp1 с аргументом: " + nValue);
-		//m_pUnmanaged->MethodNativeCpp1(nValue);
-		return 0;
+		m_pUnmanaged->MethodNativeCpp1(nValue);
 	}
 
 

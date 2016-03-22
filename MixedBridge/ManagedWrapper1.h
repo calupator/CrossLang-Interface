@@ -19,7 +19,7 @@ namespace Wrapper
 		Managed(void);
 		virtual ~Managed(void);
 
-		int MethodMixedCpp1(String ^ nValue);
+		void MethodMixedCpp1(int nValue);
 		
 		property int PropMixedCpp1
 		{

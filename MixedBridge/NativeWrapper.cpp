@@ -46,40 +46,41 @@ using namespace msclr::interop;
 
 namespace Wrapper
 {
-int NativeMethods::GetStringLength1(String ^ str)
-{
-    // Marshal System::String to PCWSTR, and call the C++ function.
-    marshal_context ^ context = gcnew marshal_context();
-    PCWSTR pszString = context->marshal_as<const wchar_t*>(str);
-    int length = ::GetStringLength1(pszString);
-    delete context;
-    return length;
+	int NativeMethods::GetStringLength1(String ^ str)
+	{
+		// Marshal System::String to PCWSTR, and call the C++ function.
+		marshal_context ^ context = gcnew marshal_context();
+		PCWSTR pszString = context->marshal_as<const wchar_t*>(str);
+		int length = ::GetStringLength1(pszString);
+		delete context;
+		return length;
+	}
+
+	int NativeMethods::GetStringLength2(String ^ str)
+	{
+		// Marshal System::String to PCWSTR, and call the C++ function.
+		marshal_context ^ context = gcnew marshal_context();
+		PCWSTR pszString = context->marshal_as<const wchar_t*>(str);
+		int length = ::GetStringLength2(pszString);
+		delete context;
+		return length;
+	}
+
+	String ^ NativeMethods::Max(int a, int b, CompareCallback ^ cmpFunc)
+	{
+		// Convert the delegate to a function pointer.
+		IntPtr pCmpFunc = Marshal::GetFunctionPointerForDelegate(cmpFunc);
+		marshal_context ^ context = gcnew marshal_context();
+		PCWSTR pszString = ::Max(a, b, static_cast<::PFN_COMPARE>(pCmpFunc.ToPointer()));
+		String ^ str = context->marshal_as<String ^>(pszString);
+		return str;
+	}
+
+	int NativeMethods::func(int a, int b)
+	{
+		if ((a - b) >= 0)
+			return 1;
+		return 0;
+	}
 }
 
-int NativeMethods::GetStringLength2(String ^ str)
-{
-    // Marshal System::String to PCWSTR, and call the C++ function.
-    marshal_context ^ context = gcnew marshal_context();
-    PCWSTR pszString = context->marshal_as<const wchar_t*>(str);
-    int length = ::GetStringLength2(pszString);
-    delete context;
-    return length;
-}
-
-String ^ NativeMethods::Max(int a, int b, CompareCallback ^ cmpFunc)
-{
-    // Convert the delegate to a function pointer.
-    IntPtr pCmpFunc = Marshal::GetFunctionPointerForDelegate(cmpFunc);
-    marshal_context ^ context = gcnew marshal_context();
-	PCWSTR pszString = ::Max(a, b, static_cast<::PFN_COMPARE>(pCmpFunc.ToPointer()));
-	String ^ str = context->marshal_as<String ^>(pszString);
-    return str;
-}
-
-int NativeMethods::func(int a, int b)
-{
-	if ((a - b) >= 0)
-		return 1;
-	return 0;
-}
-}

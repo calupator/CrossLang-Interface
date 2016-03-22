@@ -24,7 +24,7 @@ namespace InterfaceNativeCpp
 		TestInterfaceNativeCpp(void);
 		virtual ~TestInterfaceNativeCpp(void);
 		//TestInterfaceNativeCpp(CFeedback* pFeedback);
-		int MethodNativeCpp1(std::string pszString);
+		void MethodNativeCpp1(int pszString);
 		float getPropNativeCpp1(void);
 		void setPropNativeCpp1(float newVal);
 	};

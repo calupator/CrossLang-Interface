@@ -68,7 +68,7 @@ namespace Wrapper
         virtual String ^ ToString(void) override;
 
         // Static method
-        static int GetStringLength(String ^ str);
+        int GetStringLength(String ^ str);
 
     protected:
         !ManagedObjectWrapper(void);

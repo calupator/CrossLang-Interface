@@ -6,13 +6,12 @@ using namespace std;
 cfunc EventNativeC1;
 int pval;
 
-_API int MethodNativeC1(PCWSTR pszString)
+_API void MethodNativeC1(int pszString)
 {
 	std::cout << "Метод MethodNativeC1 получил параметр: " << pszString << endl;
 	stringstream ss;
 	ss << pszString;
 	EventNativeC1("\tАргумент метода MethodNativeC1: " + ss.str());
-	return static_cast<int>(wcslen(pszString));
 }
 
 _API int getPropNativeC1()

@@ -19,6 +19,7 @@ Module Module1
         End If
         Console.WriteLine("*****************************")
 
+        NewCpp()
         VB()
         CS()
         Cpp()
@@ -40,6 +41,35 @@ Module Module1
     Private Sub EventHandler(ByVal str As String) Handles Mixedtest.ValueChanged
         Console.WriteLine("Обработчик события поймал событие: " & Chr(13) & Chr(10) & str)
         Console.WriteLine()
+    End Sub
+    Private Function func(ByVal a As Integer, ByVal b As Integer) As Integer
+        If ((a - b) >= 0) Then
+            Return 1
+        End If
+        Return 0
+    End Function
+
+    Private Sub NewCpp()
+        Dim sow As New ManagedObjectWrapper
+        Dim Wrapper As New NativeMethods
+        Dim call_ As New CompareCallback(AddressOf func)
+        Dim a As Integer = sow.GetStringLength("Первая строка")
+        Dim b As Integer = sow.GetStringLength("Вторая длинная строка")
+        Console.WriteLine(Wrapper.Max(a, b, call_))
+        sow.FloatProperty = 20.568F
+        Dim ret As Single = sow.FloatProperty
+        Console.WriteLine(sow.ToString())
+
+        Console.WriteLine("           Managed wrapper for native C DLL         ")
+        Dim call2 As CompareCallback = New CompareCallback(AddressOf Wrapper.func)
+        a = Wrapper.GetStringLength1("Первая строка")
+        b = Wrapper.GetStringLength2("Вторая длинная строка")
+        Console.WriteLine("Делегат статической функции")
+        Console.WriteLine(Wrapper.Max(a, b, call_))
+        a = Wrapper.GetStringLength1("Первая строка еще длиннее")
+        Console.WriteLine("Делегат функции-члена")
+        Console.WriteLine(Wrapper.Max(a, b, call2))
+
     End Sub
 
     Private Sub VB()

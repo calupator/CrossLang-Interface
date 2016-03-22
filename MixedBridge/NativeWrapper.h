@@ -68,9 +68,9 @@ namespace Wrapper
     public ref class NativeMethods
     {
     public:
-        static int GetStringLength1(String ^ str);
-        static int GetStringLength2(String ^ str);
-        static String ^ Max(int a, int b, CompareCallback ^ cmpFunc);
+        int GetStringLength1(String ^ str);
+        int GetStringLength2(String ^ str);
+        String ^ Max(int a, int b, CompareCallback ^ cmpFunc);
 		int func(int a, int b);
 	};
 }

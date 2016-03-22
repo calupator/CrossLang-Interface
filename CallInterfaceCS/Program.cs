@@ -28,7 +28,7 @@ namespace CallInterfaceCS
                 Console.WriteLine("* 64-х битное приложение!!! *");
             }
             Console.WriteLine("*****************************");
-
+            NewCpp();
             VB();
             CS();
             Cpp();
@@ -52,6 +52,37 @@ namespace CallInterfaceCS
         {
             Console.WriteLine("Обработчик события поймал событие без параметров");
             Console.WriteLine();
+        }
+
+        static void NewCpp()
+        {
+        	Console.WriteLine("         Работа с Native class         ");
+            ManagedObjectWrapper sow = new ManagedObjectWrapper();
+            NativeMethods Wrapper = new NativeMethods();
+            CompareCallback call = new CompareCallback(func);
+            int a = sow.GetStringLength("Первая строка");
+            int b = sow.GetStringLength("Вторая длинная строка");
+            Console.WriteLine(Wrapper.Max(a, b, call));
+            sow.FloatProperty = 20.568f;
+            float ret = sow.FloatProperty;
+            Console.WriteLine(sow.ToString());
+
+            Console.WriteLine("           Managed wrapper for native C DLL         ");
+            CompareCallback call2 = new CompareCallback(Wrapper.func);
+            a = Wrapper.GetStringLength1("Первая строка");
+            b = Wrapper.GetStringLength2("Вторая длинная строка");
+            Console.WriteLine("Делегат статической функции");
+            Console.WriteLine(Wrapper.Max(a, b, call));
+            a = Wrapper.GetStringLength1("Первая строка еще длиннее");
+            Console.WriteLine("Делегат функции-члена");
+            Console.WriteLine(Wrapper.Max(a, b, call2));
+        }
+
+        static int func(int a, int b)
+        {
+            if ((a - b) >= 0)
+                return 1;
+            return 0;
         }
 
         static void VB()

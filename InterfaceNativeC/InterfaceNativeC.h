@@ -10,12 +10,10 @@
 
 typedef void ( *cfunc)(std::string x);
 
-_API int MethodNativeC1(PCWSTR X);
+_API void MethodNativeC1(int pszString);
 _API int getPropNativeC1();
 _API void setPropNativeC1(int X);
 _API void callback(cfunc call);
-
-_API int MethodNativeC1(PCWSTR pszString);
 
 #pragma region Callback Function
 

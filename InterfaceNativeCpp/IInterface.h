@@ -16,7 +16,7 @@ namespace InterfaceNativeCpp
 	public:
 		virtual float getPropNativeCpp1(void) = 0;
 		virtual void setPropNativeCpp1(float) = 0;
-		virtual int MethodNativeCpp1(std::string) = 0;
+		virtual void MethodNativeCpp1(int) = 0;
 		EventNativeCpp1EventHandler *EventNativeCpp1;
 	};
 }

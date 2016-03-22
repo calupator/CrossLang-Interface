@@ -10,6 +10,7 @@ void VB();
 void CS();
 void Cpp();
 void Wrap();
+void NewCpp();
 int func(int a, int b);
 
 void EventHandler(Object ^sender, String ^str)
@@ -41,11 +42,22 @@ int main(array<System::String ^> ^args)
 	}
 	Console::WriteLine("*****************************");
 
-	Console::WriteLine("Работа с Native class");
+
+	NewCpp();
+	VB();
+	CS();
+	Cpp();
+	Wrap();
+
+	Console::ReadKey();
+}
+
+void NewCpp()
+{
+	Console::WriteLine("         Работа с Native class         ");
 	ManagedObjectWrapper^ sow = gcnew ManagedObjectWrapper;
 	NativeMethods^ Wrapper = gcnew NativeMethods;
 	CompareCallback^ call = gcnew CompareCallback(&func);
-	CompareCallback^ call2 = gcnew CompareCallback(Wrapper, &NativeMethods::func);
 	int a = sow->GetStringLength("Первая строка");
 	int b = sow->GetStringLength("Вторая длинная строка");
 	Console::WriteLine(Wrapper->Max(a, b, call));
@@ -53,7 +65,8 @@ int main(array<System::String ^> ^args)
 	float ret = sow->FloatProperty;
 	Console::WriteLine(sow->ToString());
 
-	Console::WriteLine("Работа с C-функциями");
+	Console::WriteLine("           Managed wrapper for native C DLL         ");
+	CompareCallback^ call2 = gcnew CompareCallback(Wrapper, &NativeMethods::func);
 	a = Wrapper->GetStringLength1("Первая строка");
 	b = Wrapper->GetStringLength2("Вторая длинная строка");
 	Console::WriteLine("Делегат статической функции");
@@ -61,13 +74,6 @@ int main(array<System::String ^> ^args)
 	a = Wrapper->GetStringLength1("Первая строка еще длиннее");
 	Console::WriteLine("Делегат функции-члена");
 	Console::WriteLine(Wrapper->Max(a, b, call2));
-
-	/*VB();
-	CS();
-	Cpp();*/
-	Wrap();
-
-	Console::ReadKey();
 }
 
 void VB()
@@ -115,7 +121,7 @@ void Wrap()
 	Mixedtest->ValueChanged += gcnew ValueChangedHandler(&::EventHandler);
 	Mixedtest->PropMixedCpp1 = 111;
 	Console::WriteLine("Свойство PropManagedCpp1 установлено в: " + Mixedtest->PropMixedCpp1);
-//	Mixedtest->MethodMixedCpp1(5);
+	Mixedtest->MethodMixedCpp1(5);
 	Console::WriteLine("=====================================================");
 }
 
